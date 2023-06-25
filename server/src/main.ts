@@ -6,12 +6,16 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
 
-  const port =
-    process.env.NODE_ENV === 'production'
-      ? `0.0.0.0:${process.env.PORT}`
-      : 4000;
-  console.log(port);
-  await app.listen(port);
+  let port: number | string = 4000;
+  let hostName = 'localhost';
+
+  if (process.env.NODE_ENV === 'production' && process.env.PORT) {
+    hostName = '0.0.0.0';
+    port = process.env.PORT;
+  }
+
+  console.log(hostName, port);
+  await app.listen(port, hostName);
 }
 
 bootstrap();
