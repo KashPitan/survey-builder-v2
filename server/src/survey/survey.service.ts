@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/services/prisma.service';
-import { Prisma } from '@prisma/client';
+import { ISurvey } from 'shared/interfaces/shared-interfaces';
 
 @Injectable()
 export class SurveyService {
@@ -16,12 +16,12 @@ export class SurveyService {
     return survey;
   }
 
-  async addSurvey(survey: Prisma.SurveyCreateInput) {
-    console.log(survey);
+  async addSurvey(survey: ISurvey) {
+    console.log(survey.questions);
     const res = await this.prismaService.survey.create({
       data: {
         name: survey.name,
-        questions: { create: survey.questions?.create },
+        questions: { create: survey.questions },
       },
     });
     console.log(res);

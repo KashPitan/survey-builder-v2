@@ -13,7 +13,7 @@ import { Response } from 'express';
 import { SurveyService } from './survey.service';
 import { ZodValidationPipe } from 'src/pipes/zod.pipe';
 import SurveySchema from 'shared/schemas/survey.schema';
-import { Survey as SurveyModel } from '@prisma/client';
+import { ISurvey } from 'shared/interfaces/shared-interfaces';
 
 @Controller('surveys')
 export class SurveyController {
@@ -31,8 +31,7 @@ export class SurveyController {
 
   @UsePipes(new ZodValidationPipe(SurveySchema))
   @Post()
-  async postSurvey(@Body() body: SurveyModel, @Res() res: Response) {
-    console.log(body);
+  async postSurvey(@Body() body: ISurvey, @Res() res: Response) {
     try {
       const serviceResponse = await this.surveyService.addSurvey(body);
       res.status(200).send({ res: serviceResponse });
