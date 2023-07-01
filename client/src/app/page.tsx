@@ -1,4 +1,3 @@
-// import styles from "./page.module.css";
 'use client';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './redux/store';
@@ -9,6 +8,7 @@ import axios from 'axios';
 import AddedQuestions from './components/AddedQuestions/AddedQuestions';
 import SurveySwitch from './components/SurveySwitch';
 import Form from './components/SurveyDetailsForm';
+import { SubmitSurveyButton } from '@/styles';
 
 export default function Home() {
   const survey = useSelector((state: RootState) => {
@@ -29,12 +29,9 @@ export default function Home() {
       <Form />
       <SurveySwitch />
       <AddedQuestions />
-      <button
-        className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        onClick={onSubmitHandler}
-      >
+      <SubmitSurveyButton onClick={onSubmitHandler}>
         SUBMIT SURVEY
-      </button>
+      </SubmitSurveyButton>
     </>
   );
 }

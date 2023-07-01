@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMultiOptionSingleSelectQuestion } from '@/app/redux/slices/surveySlice';
 import Errors from './Errors';
+import { Button } from '@/styles';
 
 const MultiOptionSingleSelectComponent = () => {
   const dispatch = useDispatch();
@@ -99,21 +100,16 @@ const MultiOptionSingleSelectComponent = () => {
         className="rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         onChange={optionInputOnChangeHandler}
       ></input>
-      <button
+      <Button
         id="add-option-button"
-        className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
         onClick={addButtonOnClickHandler}
         disabled={!optionInputValue}
       >
         add option
-      </button>
+      </Button>
+
       <Errors errors={errors} />
-      <button
-        className="rounded-md block bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-        onClick={submitButtonHandler}
-      >
-        Add Question To Survey
-      </button>
+      <Button onClick={submitButtonHandler}>Add Question To Survey</Button>
     </>
   );
 };
