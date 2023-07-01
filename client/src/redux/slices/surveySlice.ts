@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ISurveyStoreState } from '../../types';
+import { ISurveyStoreState } from '@/app/types';
 import { QuestionType } from '@/app/constants';
 import { IQuestion } from '@shared/interfaces';
 

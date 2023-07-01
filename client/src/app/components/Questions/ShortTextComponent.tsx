@@ -3,7 +3,7 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addShortTextQuestion } from '@/app/redux/slices/surveySlice';
+import { addShortTextQuestion } from '@/redux/slices/surveySlice';
 import Errors from './Errors';
 
 const ShortTextComponent = () => {

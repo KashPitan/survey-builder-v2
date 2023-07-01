@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addMultiOptionSingleSelectQuestion } from '@/app/redux/slices/surveySlice';
+import { addMultiOptionSingleSelectQuestion } from '@/redux/slices/surveySlice';
 import Errors from './Errors';
 import { Button } from '@/styles';
 

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSurveyName } from '../redux/slices/surveySlice';
+import { setSurveyName } from '@/redux/slices/surveySlice';
 
 const Form = () => {
   const [name, setName] = useState('');

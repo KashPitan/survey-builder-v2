@@ -1,7 +1,7 @@
 'use client';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from './redux/store';
-import { clearSurvey } from '@/app/redux/slices/surveySlice';
+import { RootState } from '@/redux/store';
+import { clearSurvey } from '@/redux/slices/surveySlice';
 
 import axios from 'axios';
 
