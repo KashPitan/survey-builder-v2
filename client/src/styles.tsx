@@ -16,3 +16,7 @@ export const Input = styled.input`
 export const Label = styled.label`
   ${tw`block text-sm font-medium leading-6 text-gray-900`}
 `;
+
+export const Error = styled.p`
+  ${tw`mt-2 text-sm text-red-600`}
+`;

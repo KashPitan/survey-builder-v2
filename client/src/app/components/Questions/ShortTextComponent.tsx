@@ -1,63 +1,46 @@
 'use client';
 
-import React, { SyntheticEvent, useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-
 import { addShortTextQuestion } from '@/redux/slices/surveySlice';
-import Errors from './Errors';
-import { Button, Input, Label } from '@/styles';
+
+import { useForm } from 'react-hook-form';
+
+import { Button, Input, Label, Error } from '@/styles';
 
 const ShortTextComponent = () => {
   const dispatch = useDispatch();
 
-  // component state
-  const [question, setQuestion] = useState('');
-  const [errors, setErrors] = useState<string[]>([]);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm();
 
-  const questionInputOnChangeHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setQuestion(event.target.value);
-  };
-
-  const submitButtonHandler = (e: SyntheticEvent) => {
-    e.preventDefault();
-    const isValid = validateForm(question);
-    if (!isValid) return;
-
+  const onSubmit = (data) => {
+    const { question } = data;
     dispatch(addShortTextQuestion({ question }));
-    resetForm();
-  };
-
-  const resetForm = () => setQuestion('');
-
-  const validateForm = (question: string) => {
-    if (question.length < 3) {
-      setErrors((prevState) => [
-        ...prevState,
-        'Question must be at least 3 characters in length',
-      ]);
-      return false;
-    }
-
-    setErrors([]);
-    return true;
+    reset();
   };
 
   return (
-    <>
-      <form onSubmit={submitButtonHandler}>
-        <Label htmlFor="question-input">Enter Question:</Label>
-        <Input
-          id="question-input"
-          type="text"
-          value={question}
-          onChange={questionInputOnChangeHandler}
-        />
-        <Errors errors={errors} />
-        <Button type="submit"> Add Question To Survey</Button>
-      </form>
-    </>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Label htmlFor="question-input">Enter Question:</Label>
+      <Input
+        id="question-input"
+        {...register('question', {
+          required: { value: true, message: 'You must enter a question' },
+          minLength: {
+            value: 3,
+            message: 'Question must be at least 3 characters long',
+          },
+        })}
+        type="text"
+      />
+      <Error>{errors.question?.message}</Error>
+      <Button type="submit"> Add Question To Survey</Button>
+    </form>
   );
 };
 
