@@ -1,3 +1,4 @@
+import { Label, Input } from '@/styles';
 import { QuestionType } from '../constants';
 import { IQuestion } from '@shared/interfaces';
 
@@ -30,12 +31,7 @@ export default class SurveyBuilder {
     return (
       <>
         <div>
-          <label
-            htmlFor={`question-${this.count}`}
-            className="block text-sm font-medium leading-6 text-gray-900"
-          >
-            {question.question}
-          </label>
+          <Label htmlFor={`question-${this.count}`}>{question.question}</Label>
           {question.type === QuestionType.SHORT_TEXT &&
             this.addShortTextQuestion()}
           {question.type === QuestionType.MULTI_OPTION_SINGLE_SELECT &&
@@ -47,10 +43,10 @@ export default class SurveyBuilder {
 
   addShortTextQuestion() {
     return (
-      <input
+      <Input
         id={`question-${this.count}`}
         className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-      ></input>
+      ></Input>
     );
   }
 

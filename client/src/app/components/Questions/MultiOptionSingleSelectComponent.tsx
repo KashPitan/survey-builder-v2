@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMultiOptionSingleSelectQuestion } from '@/redux/slices/surveySlice';
 import Errors from './Errors';
-import { Button } from '@/styles';
+import { Button, Input, Label } from '@/styles';
 
 const MultiOptionSingleSelectComponent = () => {
   const dispatch = useDispatch();
@@ -73,33 +73,21 @@ const MultiOptionSingleSelectComponent = () => {
   return (
     <>
       <div>Current Options: {optionsList.join()}</div>
-      <label
-        htmlFor="question-input"
-        className="block text-sm font-medium leading-6 text-gray-900"
-      >
-        Enter Question:
-      </label>
-      <input
+      <Label htmlFor="question-input">Enter Question:</Label>
+      <Input
         id="question-input"
         type="text"
         value={question}
-        className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         onChange={questionInputOnChangeHandler}
-      ></input>
+      />
       <br></br>
-      <label
-        htmlFor="option-list-input"
-        className="block text-sm font-medium leading-6 text-gray-900"
-      >
-        Add list Option
-      </label>
-      <input
+      <Label htmlFor="option-list-input">Add list Option</Label>
+      <Input
         id="option-list-input"
         type="text"
         value={optionInputValue}
-        className="rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         onChange={optionInputOnChangeHandler}
-      ></input>
+      ></Input>
       <Button
         id="add-option-button"
         onClick={addButtonOnClickHandler}

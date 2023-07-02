@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { addShortTextQuestion } from '@/redux/slices/surveySlice';
 import Errors from './Errors';
+import { Button, Input, Label } from '@/styles';
 
 const ShortTextComponent = () => {
   const dispatch = useDispatch();
@@ -46,26 +47,15 @@ const ShortTextComponent = () => {
   return (
     <>
       <form onSubmit={submitButtonHandler}>
-        <label
-          htmlFor="question-input"
-          className="block text-sm font-medium leading-6 text-gray-900"
-        >
-          Enter Question:
-        </label>
-        <input
+        <Label htmlFor="question-input">Enter Question:</Label>
+        <Input
           id="question-input"
           type="text"
           value={question}
-          className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           onChange={questionInputOnChangeHandler}
-        ></input>
+        />
         <Errors errors={errors} />
-        <button
-          type="submit"
-          className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-        >
-          Add Question To Survey
-        </button>
+        <Button type="submit"> Add Question To Survey</Button>
       </form>
     </>
   );
