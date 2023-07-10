@@ -1,8 +1,8 @@
-import React, { FC } from "react";
-import { QuestionType } from "../constants";
+import React, { FC } from 'react';
+import { QuestionType } from '@/constants';
 
-import ShortTextComponent from "./Questions/ShortTextComponent";
-import MultiOptionSingleSelectComponent from "./Questions/MultiOptionSingleSelectComponent";
+import ShortTextComponent from './Questions/ShortTextComponent';
+import MultiOptionSingleSelectComponent from './Questions/MultiOptionSingleSelectComponent';
 
 const QuestionInput: FC<{
   type: QuestionType;

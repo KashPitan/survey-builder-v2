@@ -3,11 +3,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMultiOptionSingleSelectQuestion } from '@/redux/slices/surveySlice';
-import Errors from './Errors';
+
+import { useForm, SubmitHandler } from 'react-hook-form';
+
 import { Button, Input, Label } from '@/styles';
+import Errors from './Errors';
 
 const MultiOptionSingleSelectComponent = () => {
   const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
 
   // component state
   const [optionsList, setOptionsList] = useState<string[]>([]);
@@ -71,7 +76,7 @@ const MultiOptionSingleSelectComponent = () => {
   };
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div>Current Options: {optionsList.join()}</div>
       <Label htmlFor="question-input">Enter Question:</Label>
       <Input
@@ -95,10 +100,9 @@ const MultiOptionSingleSelectComponent = () => {
       >
         add option
       </Button>
-
       <Errors errors={errors} />
       <Button onClick={submitButtonHandler}>Add Question To Survey</Button>
-    </>
+    </form>
   );
 };
 
