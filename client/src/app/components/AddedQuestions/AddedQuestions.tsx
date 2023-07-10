@@ -10,7 +10,13 @@ const AddedQuestions = () => {
     <>
       {questions &&
         questions.map((question, index) => {
-          return <AddedQuestionListItem question={question} key={index} />;
+          return (
+            <AddedQuestionListItem
+              question={question}
+              key={index}
+              index={index}
+            />
+          );
         })}
     </>
   );

@@ -26,12 +26,26 @@ export default function Home() {
   return (
     <>
       <h1 className="text-3xl font-bold underline">SURVEY BUILDER</h1>
-      <Form />
-      <SurveySwitch />
-      <AddedQuestions />
-      <SubmitSurveyButton onClick={onSubmitHandler}>
-        SUBMIT SURVEY
-      </SubmitSurveyButton>
+      <div className="flex justify-center items-center">
+        <div className="flex gap-x-32 pb-12">
+          <div>
+            <Form />
+            <SurveySwitch />
+          </div>
+
+          <div className="mt-2">
+            <AddedQuestions />
+            <div className="flex flex-col">
+              <SubmitSurveyButton
+                className="self-center"
+                onClick={onSubmitHandler}
+              >
+                SUBMIT SURVEY
+              </SubmitSurveyButton>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

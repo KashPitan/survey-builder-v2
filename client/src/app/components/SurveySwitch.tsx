@@ -4,6 +4,8 @@ import { useState } from 'react';
 import QuestionInput from './QuestionInput';
 import { titleCase } from '../utils';
 
+import { Label } from '@/styles';
+
 const SurveySwitch = () => {
   const [questionType, setQuestionType] = useState<QuestionType | null>(
     QuestionType.SHORT_TEXT
@@ -15,7 +17,7 @@ const SurveySwitch = () => {
 
   return (
     <>
-      <label htmlFor="question-type">Choose a question type</label>
+      <Label htmlFor="question-type">Choose a question type</Label>
 
       <select
         name="question-type"
