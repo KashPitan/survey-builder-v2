@@ -18,9 +18,12 @@ const ShortTextComponent = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { question: string }) => {
     const { question } = data;
-    dispatch(addShortTextQuestion({ question }));
+    const formattedQuestion =
+      question[0].toUpperCase() + question.slice(1).toLowerCase();
+    console.log(formattedQuestion);
+    dispatch(addShortTextQuestion({ question: formattedQuestion }));
     reset();
   };
 
