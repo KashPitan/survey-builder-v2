@@ -22,7 +22,6 @@ const ShortTextComponent = () => {
     const { question } = data;
     const formattedQuestion =
       question[0].toUpperCase() + question.slice(1).toLowerCase();
-    console.log(formattedQuestion);
     dispatch(addShortTextQuestion({ question: formattedQuestion }));
     reset();
   };
