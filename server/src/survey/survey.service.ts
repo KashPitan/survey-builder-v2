@@ -16,6 +16,15 @@ export class SurveyService {
     return survey;
   }
 
+  async getAllSurveys() {
+    const surveys = await this.prismaService.survey.findMany({
+      include: { questions: true },
+    });
+    console.dir(surveys, { depth: 1 });
+
+    return surveys;
+  }
+
   async addSurvey(survey: ISurvey) {
     console.log(survey.questions);
     const res = await this.prismaService.survey.create({

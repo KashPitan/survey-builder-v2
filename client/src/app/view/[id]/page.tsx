@@ -1,40 +1,42 @@
-import { IQuestion } from '@shared/interfaces';
-import SurveyBuilder from '../SurveyBuilder';
-import FormContainer from './components/FormContainer';
+// TODO: added this to prevent use context error from styled components: needs to be fixed
 
-async function getSurvey(id: string) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/surveys?id=${id}`
-  );
-  console.log(res);
+import Form from './components/Form';
+import FormContainer from './components/FormContainer';
+import SurveyBuilder from './components/SurveyBuilder';
+
+async function getSurvey(id: number) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/surveys/${id}`);
   const data = await res.json();
   // console.log(data);
   return data;
 }
 
-function buildSurveyQuestions(questions: IQuestion[]) {
-  console.log(questions);
-  const surveyBuilder = new SurveyBuilder(questions);
-  const components = surveyBuilder.getSurveyComponents();
-  return components;
-}
-
 const page: ({
   params,
 }: {
-  params: { id: string };
+  params: { id: number };
 }) => Promise<JSX.Element> = async ({ params }) => {
-  const id = params.id;
+  const { id } = params;
   const survey = await getSurvey(id);
-  const questionComponents = buildSurveyQuestions(survey.questions);
+  const questions = survey.questions;
 
   return (
     <>
       <h1>Survey: {survey.name}</h1>
-      <FormContainer questionCount={questionComponents.length}>
-        {/* TODO: turn this into a component  */}
-        {questionComponents}
-      </FormContainer>
+      <Form questions={questions} />
+      {/* <form onSubmit={handleSubmit}>
+        <SurveyBuilder questions={questions} />{' '}
+        <button
+          type="submit"
+          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Submit
+        </button>
+      </form> */}
+
+      {/* <FormContainer questionCount={questions.length}>
+        <SurveyBuilder questions={questions} />
+      </FormContainer> */}
     </>
   );
 };

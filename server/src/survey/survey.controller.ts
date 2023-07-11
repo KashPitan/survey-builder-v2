@@ -5,6 +5,7 @@ import {
   Get,
   Post,
   Query,
+  Param,
   Res,
   ParseIntPipe,
   UsePipes,
@@ -19,10 +20,21 @@ import { ISurvey } from 'shared/interfaces/shared-interfaces';
 export class SurveyController {
   constructor(private surveyService: SurveyService) {}
 
-  @Get()
-  async getSurvey(@Query('id', ParseIntPipe) id: number) {
+  @Get(':id')
+  async getSurvey(@Param('id', ParseIntPipe) id: number) {
     try {
+      console.log(id);
       return await this.surveyService.getSurvey(id);
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException();
+    }
+  }
+
+  @Get()
+  async getAllSurveys() {
+    try {
+      return await this.surveyService.getAllSurveys();
     } catch (error) {
       console.log(error);
       throw new BadRequestException();

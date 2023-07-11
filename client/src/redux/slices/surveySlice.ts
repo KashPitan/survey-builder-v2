@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ISurveyStoreState } from '@/app/types';
-import { QuestionType } from '@/app/constants';
+import { ISurveyStoreState } from '@/types';
+import { QuestionType } from '@/constants';
 import { IQuestion } from '@shared/interfaces';
 
 const initialState: ISurveyStoreState = { name: '', questions: [] };
