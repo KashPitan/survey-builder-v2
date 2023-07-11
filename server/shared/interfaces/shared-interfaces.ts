@@ -10,3 +10,7 @@ const getSurveyParamsSchema = z.object({ id: z.string().regex(/^\d+$/) });
 export type ISurveyResponse = Prisma.SurveyGetPayload<{
   include: { questions: true };
 }>;
+
+export type IQuestionResponse = Prisma.QuestionGetPayload<
+  Record<string, never>
+>;

@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { clearSurvey } from '@/redux/slices/surveySlice';
 
-import axios from 'axios';
-
 import AddedQuestions from '@/components/AddedQuestions/AddedQuestions';
 import SurveySwitch from '@/components/SurveySwitch';
 import Form from '@/components/SurveyDetailsForm';
@@ -17,10 +15,25 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const onSubmitHandler = async () => {
-    // TODO: replace axios with fetch and uninstall
-    const res = await axios.post('api/surveys', { survey });
-    dispatch(clearSurvey());
-    console.log(res);
+    try {
+      const rawResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/surveys`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(survey),
+        }
+      );
+      const content = await rawResponse.json();
+      if (content.statusCode === 200) {
+        dispatch(clearSurvey());
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
