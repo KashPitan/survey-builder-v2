@@ -1,6 +1,5 @@
 'use client';
 import React, { FC } from 'react';
-import axios from 'axios';
 
 import SurveyBuilder from './SurveyBuilder';
 import { IQuestionResponse } from '@shared/interfaces';

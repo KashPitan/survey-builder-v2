@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { clearSurvey } from '@/redux/slices/surveySlice';
 
-import axios from 'axios';
-
 import AddedQuestions from '@/components/AddedQuestions/AddedQuestions';
 import SurveySwitch from '@/components/SurveySwitch';
 import Form from '@/components/SurveyDetailsForm';
