@@ -13,6 +13,8 @@ docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.12-ma
 
 ```
 
+If you don't have docker you can install rabbitMQ here: https://www.rabbitmq.com/install-windows.html and start the server
+
 After this run
 
 ```
